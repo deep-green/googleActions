@@ -1,0 +1,42 @@
+{
+  "actions": [
+    {
+      "description": "Default Welcome Intent",
+      "name": "MAIN",
+      "fulfillment": {
+        "conversationName": "dgfulfill"
+      },
+      "intent": {
+        "name": "actions.intent.MAIN",
+        "trigger": {
+          "queryPatterns": [
+            "deep green",
+            "tiefes grün"
+          ]
+        }
+      }
+    },
+    {
+      "description": "Test Connection Intent",
+      "name": "CONN",
+      "fulfillment": {
+        "conversationName": "dgfulfill"
+      },
+      "intent": {
+        "name": "deepgreen.intent.CONN",
+        "trigger": {
+          "queryPatterns": [
+            "test"
+          ]
+        }
+      }
+    }
+  ],
+  "conversations": {
+    "dgfulfill": {
+      "name": "dgfulfill",
+      "url": "https://pensive-updike.bespoken.link/"
+    }
+  },
+  "locale": "de"
+}
