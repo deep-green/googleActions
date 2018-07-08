@@ -1,32 +1,15 @@
 var Assistant = require("actions-on-google").ApiAiApp;
 var expressMockery = require("node-mocks-http");
 
-const app = Assistant({ debug: true });
-
-app.intent("actions.intent.MAIN", (conv) => {
-    conv.ask("Debug21");
-});
-
-exports.handler = function (event, context, callback) {
+exports.handler = function(event, context, callback) {
 
     // With the bespoken proxy the event is the payload. In your lambda it is very likely different!
     var assistant = getAssistant(event);
 
     // Do your thing ...
-    assistant.tell("Hiii");
+    assistant.tell("We fooled Google! Yay! Check out the bespoken tools!")
 
     var response = JSON.stringify(assistant.response_._getData());
-
-    /*
-    var response2 = assistant.response_._getData();
-    var response3 = "sup?";
-
-    var message =
-    {
-        "speech": "Text response",
-        "type": 0
-    };
-    */
 
     callback(null, response);
 };
@@ -53,5 +36,3 @@ function getAssistant(requestBody) {
     // Feed the request/response to the assistant SDK
     return new Assistant({ request: mockRequest, response: mockResponse });
 }
-
-exports.myFunction = functions.https.onRequest(app);

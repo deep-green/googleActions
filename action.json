@@ -35,7 +35,8 @@
   "conversations": {
     "dgfulfill": {
       "name": "dgfulfill",
-      "url": "https://pensive-updike.bespoken.link/"
+      "url": "https://pensive-updike.bespoken.link/",
+      "fulfillmentApiVersion": 2
     }
   },
   "locale": "de"
