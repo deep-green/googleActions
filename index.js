@@ -1,16 +1,71 @@
 var Assistant = require("actions-on-google").ApiAiApp;
 var expressMockery = require("node-mocks-http");
 
-exports.handler = function(event, context, callback) {
+exports.handler = function (event, context, callback) {
 
     // With the bespoken proxy the event is the payload. In your lambda it is very likely different!
     var assistant = getAssistant(event);
 
+    var obj = {
+        "conversationToken": "{\"state\":null,\"data\":{}}",
+        "expectUserResponse": true,
+        "expectedInputs": [
+            {
+                "inputPrompt": {
+                    "noInputPrompts": [],
+                    "richInitialPrompt": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "You're now talking to GActions Integration",
+                                    "displayText": "You're now talking to GActions Integration"
+                                }
+                            },
+                            {
+                                "basicCard": {
+                                    "buttons": [
+                                        {
+                                            "title": "Some Reddit to chill",
+                                            "openUrlAction": {
+                                                "url": "https://www.reddit.com"
+                                            }
+                                        }
+                                    ],
+                                    "formattedText": "Here's some simp-wave to relax and chill out to",
+                                    "image": {
+                                        "url": "http://tracks.arte.tv/sites/default/files/styles/jscrop_1007x566/public/c_simpsons_2.jpg?itok=INzKpsvK",
+                                        "accessibilityText": "A World of Simpsonwave"
+                                    },
+                                    "title": "A World of Simpsonwave",
+                                    "imageDisplayOptions": "CROPPED"
+                                }
+                            }
+                        ],
+                        "suggestions": []
+                    }
+                },
+                "possibleIntents": [
+                    {
+                        "intent": "actions.intent.TEXT"
+                    }
+                ]
+            }
+        ],
+        "resetUserStorage": false,
+        "userStorage": "{}",
+        "finalResponse": null,
+        "isInSandbox": true,
+        "customPushMessage": null
+    };
+
     // Do your thing ...
-    assistant.tell("We fooled Google! Yay! Check out the bespoken tools!")
+    assistant.tell("Rede mit mir ...");
 
     var response = JSON.stringify(assistant.response_._getData());
 
+    var json = JSON.stringify(obj);
+
+    //callback(null, json);
     callback(null, response);
 };
 
